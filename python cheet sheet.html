@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python 3 Offline Cheat Sheet</title>
+    <style>
+        :root {
+            --bg-color: #f4f6f9;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --primary-color: #007acc;
+            --code-bg: #1e1e1e;
+            --border-color: #e1e4e8;
+            
+            /* VS Code Syntax Colors (Offline Safe) */
+            --key: #569cd6;      /* Blue keywords */
+            --str: #ce9178;      /* Terracotta strings */
+            --num: #b5cea8;      /* Light green numbers */
+            --com: #6a9955;      /* Green comments */
+            --fun: #dcdcaa;      /* Yellow functions */
+            --typ: #4ec9b0;      /* Teal types */
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.4;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 25px;
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 10px;
+        }
+
+        header h1 {
+            margin: 0;
+            color: var(--primary-color);
+            font-size: 28px;
+        }
+
+        header p {
+            margin: 5px 0 0 0;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(45%, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            break-inside: avoid; /* Prevents splitting across pages on print */
+        }
+
+        .card h2 {
+            margin-top: 0;
+            font-size: 18px;
+            color: var(--primary-color);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+
+        .card h3 {
+            font-size: 14px;
+            margin: 12px 0 6px 0;
+            color: #555;
+        }
+
+        pre {
+            background-color: var(--code-bg);
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 0 0 10px 0;
+        }
+
+        code {
+            font-family: "Consolas", "Courier New", Courier, monospace;
+            font-size: 12.5px;
+            color: #d4d4d4;
+        }
+
+        /* Syntax Highlight Classes */
+        .k { color: var(--key); font-weight: bold; } /* keyword */
+        .s { color: var(--str); }                   /* string */
+        .n { color: var(--num); }                   /* number */
+        .c { color: var(--com); font-style: italic;}/* comment */
+        .f { color: var(--fun); }                   /* function */
+        .t { color: var(--typ); }                   /* type/class */
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12.5px;
+            margin-top: 5px;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 6px 8px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        /* PDF Printing Optimizations */
+        @media print {
+            body {
+                background-color: #fff;
+                padding: 0;
+            }
+            .container {
+                display: block;
+            }
+            .card {
+                box-shadow: none;
+                margin-bottom: 20px;
+                page-break-inside: avoid;
+            }
+            header {
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Python 3 Quick-Reference Sheet</h1>
+    <p>Offline-ready syntax and structure overview</p>
+</header>
+
+<div class="container">
+
+    <!-- Card 1: Basics & Variables -->
+    <div class="card">
+        <h2>1. Variables & Types</h2>
+        <h3>Common Data Types</h3>
+        <pre><code><span class="c"># Assignments are dynamic and can change type</span>
+x = <span class="n">42</span>                  <span class="c"># int</span>
+pi = <span class="n">3.1415</span>             <span class="c"># float</span>
+name = <span class="s">"Alice"</span>          <span class="c"># str</span>
+active = <span class="k">True</span>           <span class="c"># bool</span>
+empty = <span class="k">None</span>            <span class="c"># null value</span>
+colors = (<span class="s">"red"</span>, <span class="s">"green"</span>) <span class="c"># tuple</span>
+unique = {<span class="s">"a"</span>, <span class="s">"b"</span>}      <span class="c"># set</span>
+</code></pre>
+
+        <h3>Type Checking & Conversion</h3>
+        <pre><code><span class="c"># Inspect object type</span>
+<span class="f">print</span>(<span class="t">type</span>(x))              <span class="c"># &lt;class 'int'&gt;</span>
+<span class="f">print</span>(<span class="t">isinstance</span>(name, <span class="t">str</span>)) <span class="c"># True</span>
+
+<span class="c"># Convert values</span>
+str_val = <span class="t">str</span>(<span class="n">10</span>)       <span class="c"># '10'</span>
+int_val = <span class="t">int</span>(<span class="s">"5"</span>)       <span class="c"># 5</span>
+float_val = <span class="t">float</span>(<span class="n">3</span>)    <span class="c"># 3.0</span>
+</code></pre>
+
+        <h3>Common Built-ins</h3>
+        <pre><code><span class="c"># Useful helpers</span>
+<span class="f">print</span>(<span class="t">len</span>(colors))         <span class="c"># 2</span>
+<span class="f">print</span>(<span class="t">sorted</span>([<span class="n">3</span>, <span class="n">1</span>, <span class="n">2</span>])) <span class="c"># [1, 2, 3]</span>
+</code></pre>
+    </div>
+
+    <!-- Card 2: Control Flow -->
+    <div class="card">
+        <h2>2. Control Flow</h2>
+        <h3>Conditional Statements</h3>
+        <pre><code>score = <span class="n">85</span>
+
+<span class="k">if</span> score &gt;= <span class="n">90</span>:
+    <span class="f">print</span>(<span class="s">"A"</span>)
+<span class="k">elif</span> score &gt;= <span class="n">80</span>:
+    <span class="f">print</span>(<span class="s">"B"</span>)
+<span class="k">else</span>:
+    <span class="f">print</span>(<span class="s">"C"</span>)
+
+<span class="c"># Ternary expression</span>
+level = <span class="s">"high"</span> <span class="k">if</span> score &gt;= <span class="n">80</span> <span class="k">else</span> <span class="s">"low"</span>
+</code></pre>
+
+        <h3>Loops</h3>
+        <pre><code><span class="c"># For loop over items</span>
+fruits = [<span class="s">"apple"</span>, <span class="s">"banana"</span>]
+<span class="k">for</span> fruit <span class="k">in</span> fruits:
+    <span class="f">print</span>(fruit)
+
+<span class="c"># Range with step</span>
+<span class="k">for</span> i <span class="k">in</span> <span class="t">range</span>(<span class="n">1</span>, <span class="n">6</span>, <span class="n">2</span>):
+    <span class="f">print</span>(i)             <span class="c"># 1, 3, 5</span>
+
+<span class="c"># While loop with break and continue</span>
+count = <span class="n">0</span>
+<span class="k">while</span> count &lt; <span class="n">5</span>:
+    count += <span class="n">1</span>
+    <span class="k">if</span> count == <span class="n">3</span>:
+        <span class="k">continue</span>
+    <span class="f">print</span>(count)
+    <span class="k">if</span> count == <span class="n">4</span>:
+        <span class="k">break</span>
+</code></pre>
+    </div>
+
+    <!-- Card 3: Common Data Structures -->
+    <div class="card">
+        <h2>3. Common Data Structures</h2>
+        <h3>Lists (Ordered, Mutable)</h3>
+        <pre><code>items = [<span class="s">"apple"</span>, <span class="s">"banana"</span>]
+items.append(<span class="s">"cherry"</span>)  <span class="c"># Add item</span>
+items.insert(<span class="n">0</span>, <span class="s">"orange"</span>) <span class="c"># Insert at index</span>
+first = items[<span class="n">0</span>]         <span class="c"># Access element</span>
+subset = items[<span class="n">1</span>:<span class="n">3</span>]       <span class="c"># Slice access</span>
+items[<span class="n">1</span>] = <span class="s">"blueberry"</span> <span class="c"># Replace element</span>
+</code></pre>
+
+        <h3>List Comprehension</h3>
+        <pre><code>evens = [n <span class="k">for</span> n <span class="k">in</span> <span class="t">range</span>(<span class="n">10</span>) <span class="k">if</span> n % <span class="n">2</span> == <span class="n">0</span>]
+</code></pre>
+
+        <h3>Dictionaries (Key-Value)</h3>
+        <pre><code>user = {
+    <span class="s">"name"</span>: <span class="s">"Bob"</span>,
+    <span class="s">"role"</span>: <span class="s">"Admin"</span>
+}
+user[<span class="s">"age"</span>] = <span class="n">25</span>        <span class="c"># Add key/value</span>
+role = user.get(<span class="s">"role"</span>)             <span class="c"># Safe access</span>
+<span class="k">for</span> key, value <span class="k">in</span> user.items():
+    <span class="f">print</span>(key, value)
+</code></pre>
+
+        <h3>Tuple & Set</h3>
+        <pre><code>point = (<span class="n">10</span>, <span class="n">20</span>)   <span class="c"># Immutable tuple</span>
+letters = {<span class="s">"a"</span>, <span class="s">"b"</span>, <span class="s">"a"</span>} <span class="c"># Set removes duplicates</span>
+</code></pre>
+    </div>
+
+    <!-- Card 4: Functions & Scope -->
+    <div class="card">
+        <h2>4. Functions & Scope</h2>
+        <h3>Function Definition</h3>
+        <pre><code><span class="k">def</span> <span class="f">greet</span>(name, greeting=<span class="s">"Hello"</span>):
+    <span class="c">"""Return a greeting for the given name."""</span>
+    <span class="k">return</span> <span class="s">f"{greeting}, {name}!"</span>
+
+message = <span class="f">greet</span>(<span class="s">"Alice"</span>)
+</code></pre>
+
+        <h3>Arguments</h3>
+        <pre><code><span class="c"># Positional, default, keyword</span>
+<span class="k">def</span> <span class="f">add</span>(a, b=<span class="n">0</span>):
+    <span class="k">return</span> a + b
+
+<span class="c"># Variable arguments</span>
+<span class="k">def</span> <span class="f">show</span>(*args, **kwargs):
+    <span class="f">print</span>(args)
+    <span class="f">print</span>(kwargs)
+</code></pre>
+
+        <h3>Scope</h3>
+        <pre><code><span class="c"># Local and global scope</span>
+count = <span class="n">0</span>
+
+<span class="k">def</span> <span class="f">increment</span>():
+    <span class="k">global</span> count
+    count += <span class="n">1</span>
+
+<span class="k">def</span> <span class="f">outer</span>():
+    value = <span class="n">1</span>
+    <span class="k">def</span> <span class="f">inner</span>():
+        <span class="k">nonlocal</span> value
+        value += <span class="n">1</span>
+    inner()
+</code></pre>
+    </div>
+
+    <!-- Card 5: File & Error Handling -->
+    <div class="card">
+        <h2>5. File I/O & Exceptions</h2>
+        <h3>Reading and Writing Files</h3>
+        <pre><code><span class="c"># Safe handling with context manager</span>
+with <span class="t">open</span>(<span class="s">"log.txt"</span>, <span class="s">"w"</span>) <span class="k">as</span> file:
+    file.write(<span class="s">"System initialized.\n"</span>)
+
+with <span class="t">open</span>(<span class="s">"log.txt"</span>, <span class="s">"r"</span>) <span class="k">as</span> file:
+    content = file.read()
+
+<span class="c"># Modes: 'r', 'w', 'a', 'x', 'b', 't'</span>
+</code></pre>
+
+        <h3>Exception Handling</h3>
+        <pre><code><span class="k">try</span>:
+    value = <span class="s">"12"</span> + <span class="n">3</span>
+<span class="k">except</span> (<span class="t">TypeError</span>, <span class="t">ValueError</span>) <span class="k">as</span> err:
+    <span class="f">print</span>(<span class="s">"Invalid operation:"</span>, err)
+<span class="k">else</span>:
+    <span class="f">print</span>(<span class="s">"Success"</span> )
+<span class="k">finally</span>:
+    <span class="f">print</span>(<span class="s">"Always runs."</span>)
+</code></pre>
+    </div>
+
+    <!-- Card 6: Object-Oriented Programming -->
+    <div class="card">
+        <h2>6. Object-Oriented Programming</h2>
+        <h3>Classes & Inheritance</h3>
+        <pre><code><span class="k">class</span> <span class="t">Animal</span>:
+    <span class="k">def</span> <span class="f">__init__</span>(self, name):
+        self.name = name
+
+    <span class="k">def</span> <span class="f">speak</span>(self):
+        <span class="k">return</span> <span class="s">"..."</span>
+
+    <span class="k">def</span> <span class="f">__str__</span>(self):
+        <span class="k">return</span> f"Animal({self.name})"
+
+<span class="k">class</span> <span class="t">Dog</span>(<span class="t">Animal</span>):
+    <span class="k">def</span> <span class="f">speak</span>(self):
+        <span class="k">return</span> <span class="s">"Woof!"</span>
+
+    <span class="k">@classmethod</span>
+    <span class="k">def</span> <span class="f">create_puppy</span>(cls, name):
+        <span class="k">return</span> cls(name)
+
+    <span class="k">@staticmethod</span>
+    <span class="k">def</span> <span class="f">info</span>():
+        <span class="k">return</span> <span class="s">"Dogs are mammals."</span>
+
+my_dog = <span class="t">Dog</span>(<span class="s">"Rover"</span>)
+</code></pre>
+
+        <h3>Properties & Methods</h3>
+        <pre><code><span class="k">class</span> <span class="t">Circle</span>:
+    <span class="k">def</span> <span class="f">__init__</span>(self, radius):
+        self.radius = radius
+
+    <span class="k">@property</span>
+    <span class="k">def</span> <span class="f">area</span>(self):
+        <span class="k">return</span> <span class="n">3.14159</span> * self.radius ** <span class="n">2</span>
+</code></pre>
+    </div>
+
+    <!-- Card 7: Modules & Imports -->
+    <div class="card">
+        <h2>7. Modules & Imports</h2>
+        <h3>Import Styles</h3>
+        <pre><code><span class="c"># Full module import</span>
+import <span class="t">math</span>
+
+<span class="c"># Import selected names</span>
+from <span class="t">datetime</span> import <span class="t">date</span>, <span class="t">timedelta</span>
+
+<span class="c"># Alias names</span>
+import <span class="t">json</span> as <span class="t">js</span>
+</code></pre>
+
+        <h3>Script Entry Point</h3>
+        <pre><code><span class="k">if</span> <span class="s">__name__</span> == <span class="s">"__main__"</span>:
+    <span class="c"># Code runs only when script is executed directly</span>
+    <span class="f">main</span>()
+</code></pre>
+    </div>
+
+    <!-- Card 8: Strings & Formatting -->
+    <div class="card">
+        <h2>8. Strings & Formatting</h2>
+        <h3>Basic String Usage</h3>
+        <pre><code><span class="c"># Literals</span>
+text = <span class="s">"Hello"</span>
+quote = <span class="s">'Python'</span>
+multiline = <span class="s">"""Line one\nLine two"""</span>
+raw_path = <span class="s">r"C:\Users\Name"</span>
+
+<span class="c"># Concatenation & repetition</span>
+<span class="f">print</span>(text + <span class="s">" "</span> + quote)
+<span class="f">print</span>(<span class="s">"ha"</span> * <span class="n">3</span>)
+</code></pre>
+
+        <h3>Formatting Methods</h3>
+        <pre><code><span class="c"># f-strings (best for readability)</span>
+name = <span class="s">"Ava"</span>
+age = <span class="n">28</span>
+<span class="f">print</span>(f<span class="s">"{name} is {age} years old."</span>)
+
+<span class="c"># str.format()</span>
+<span class="f">print</span>(<span class="s">"{0} scored {1:.1f}%"</span>.format(name, <span class="n">92.384</span>))
+
+<span class="c"># Percent formatting</span>
+<span class="f">print</span>(<span class="s">"%s has %d messages"</span> % (name, <span class="n">5</span>))
+</code></pre>
+
+        <h3>Useful String Methods</h3>
+        <pre><code>raw = <span class="s">"  Python is fun!  "</span>
+<span class="f">print</span>(raw.<span class="f">strip</span>())                       <span class="c"># "Python is fun!"</span>
+<span class="f">print</span>(raw.<span class="f">upper</span>())                       <span class="c"># "  PYTHON IS FUN!  "</span>
+<span class="f">print</span>(raw.<span class="f">lower</span>())                       <span class="c"># "  python is fun!  "</span>
+<span class="f">print</span>(raw.<span class="f">replace</span>(<span class="s">"fun"</span>, <span class="s">"easy"</span>)) <span class="c"># "  Python is easy!  "</span>
+<span class="f">print</span>(raw.<span class="f">split</span>())                       <span class="c"># ['Python', 'is', 'fun!']</span>
+<span class="f">print</span>(<span class="s">"-"</span>.<span class="f">join</span>([<span class="s">"a"</span>, <span class="s">"b"</span>, <span class="s">"c"</span>])) <span class="c"># "a-b-c"</span>
+<span class="f">print</span>(<span class="s">"Python"</span>.<span class="f">startswith</span>(<span class="s">"Py"</span>)) <span class="c"># True</span>
+<span class="f">print</span>(<span class="s">"Python"</span>.<span class="f">endswith</span>(<span class="s">"on"</span>))   <span class="c"># True</span>
+</code></pre>
+    </div>
+
+    <!-- Card 9: Built-in Functions & Methods -->
+    <div class="card">
+        <h2>9. Built-in Functions & Common Methods</h2>
+        <h3>Essential Built-ins</h3>
+        <pre><code><span class="c"># Numeric helpers</span>
+<span class="f">print</span>(<span class="t">abs</span>(<span class="n">-7</span>))         <span class="c"># 7</span>
+<span class="f">print</span>(<span class="t">round</span>(<span class="n">3.14159</span>, <span class="n">2</span>)) <span class="c"># 3.14</span>
+
+<span class="c"># Iterable helpers</span>
+numbers = [<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>]
+<span class="f">print</span>(<span class="t">sum</span>(numbers))               <span class="c"># 6</span>
+<span class="f">print</span>(<span class="t">min</span>(numbers), <span class="t">max</span>(numbers)) <span class="c"># 1 3</span>
+<span class="f">print</span>(<span class="t">len</span>(numbers))               <span class="c"># 3</span>
+</code></pre>
+
+        <h3>Iteration Helpers</h3>
+        <pre><code><span class="c"># Index with enumerate</span>
+for index, item <span class="k">in</span> <span class="t">enumerate</span>(numbers, <span class="n">1</span>):
+    <span class="f">print</span>(index, item)
+
+<span class="c"># Pair iterables with zip</span>
+names = [<span class="s">"Ada"</span>, <span class="s">"Leo"</span>]
+scores = [<span class="n">95</span>, <span class="n">88</span>]
+for name, score <span class="k">in</span> <span class="t">zip</span>(names, scores):
+    <span class="f">print</span>(name, score)
+</code></pre>
+
+        <h3>Functional Tools</h3>
+        <pre><code><span class="c"># Transform values with map</span>
+values = [<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>]
+doubled = list(<span class="t">map</span>(<span class="k">lambda</span> x: x * <span class="n">2</span>, values))
+
+<span class="c"># Filter values</span>
+evens = list(<span class="t">filter</span>(<span class="k">lambda</span> x: x % <span class="n">2</span> == <span class="n">0</span>, values))
+
+<span class="c"># Check all / any conditions</span>
+<span class="f">print</span>(<span class="t">all</span>([<span class="n">1</span> &lt; <span class="n">2</span>, <span class="n">2</span> &lt; <span class="n">3</span>]))  <span class="c"># True</span>
+<span class="f">print</span>(<span class="t">any</span>([<span class="n">0</span>, <span class="n">0</span>, <span class="n">4</span>]))         <span class="c"># True</span>
+</code></pre>
+    </div>
+
+    <!-- Card 10: VS Code Shortcuts -->
+    <div class="card">
+        <h2>10. VS Code Offline Shortcuts</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Action</th>
+                    <th>Windows/Linux</th>
+                    <th>macOS</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Run Active File</td>
+                    <td><code>Ctrl + F5</code></td>
+                    <td><code>Control + F5</code></td>
+                </tr>
+                <tr>
+                    <td>Toggle Terminal</td>
+                    <td><code>Ctrl + `</code></td>
+                    <td><code>Control + `</code></td>
+                </tr>
+                <tr>
+                    <td>Comment Line(s)</td>
+                    <td><code>Ctrl + /</code></td>
+                    <td><code>Cmd + /</code></td>
+                </tr>
+                <tr>
+                    <td>Format Document</td>
+                    <td><code>Shift + Alt + F</code></td>
+                    <td><code>Shift + Opt + F</code></td>
+                </tr>
+                <tr>
+                    <td>Go to Definition</td>
+                    <td><code>F12</code></td>
+                    <td><code>F12</code></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Card 11: Common Operators -->
+    <div class="card">
+        <h2>11. Operators Quick Reference</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Operator</th>
+                    <th>Description</th>
+                    <th>Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>+</code></td>
+                    <td>Addition / Concatenation</td>
+                    <td><code>1 + 2</code>, <code>"a" + "b"</code></td>
+                </tr>
+                <tr>
+                    <td><code>-</code></td>
+                    <td>Subtraction</td>
+                    <td><code>5 - 2</code></td>
+                </tr>
+                <tr>
+                    <td><code>*</code></td>
+                    <td>Multiplication / Repetition</td>
+                    <td><code>3 * 4</code>, <code>"ha" * 2</code></td>
+                </tr>
+                <tr>
+                    <td><code>/</code></td>
+                    <td>Floating-point division</td>
+                    <td><code>7 / 2</code> (Result: <code>3.5</code>)</td>
+                </tr>
+                <tr>
+                    <td><code>//</code></td>
+                    <td>Floor Division</td>
+                    <td><code>10 // 3</code> (Result: <code>3</code>)</td>
+                </tr>
+                <tr>
+                    <td><code>%</code></td>
+                    <td>Modulo (Remainder)</td>
+                    <td><code>10 % 3</code> (Result: <code>1</code>)</td>
+                </tr>
+                <tr>
+                    <td><code>**</code></td>
+                    <td>Exponentiation</td>
+                    <td><code>2 ** 3</code> (Result: <code>8</code>)</td>
+                </tr>
+                <tr>
+                    <td><code>==, !=</code></td>
+                    <td>Equality / Inequality</td>
+                    <td><code>5 == 5</code>, <code>5 != 4</code></td>
+                </tr>
+                <tr>
+                    <td><code>&lt;, &gt;, &lt;=, &gt;=</code></td>
+                    <td>Comparison</td>
+                    <td><code>3 &lt; 5</code>, <code>4 &gt;= 4</code></td>
+                </tr>
+                <tr>
+                    <td><code>and, or, not</code></td>
+                    <td>Logical operators</td>
+                    <td><code>True and False</code>, <code>not x</code></td>
+                </tr>
+                <tr>
+                    <td><code>in</code></td>
+                    <td>Membership Check</td>
+                    <td><code>"a" in "apple"</code> (True)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>
