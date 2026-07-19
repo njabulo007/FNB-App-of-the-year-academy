@@ -34,7 +34,9 @@ introduce(name,age)
 contact_book = [
     {'name': 'John', 'phone' : '012 445 8874', 'email': 'john@gmail.com'}  
 ]
-  
+for contact_search in contact_book:
+        contact_search.get('name')
+        print(contact_search)
 
 #printing a value in a dictinary that is inside a list called contact_book [0] is the fist item in the list which is the 1st dictionary. ['name'] is the key and its value (output) is John
 print(contact_book[0]['name'])
@@ -50,7 +52,7 @@ contact_book.append({
     'email' : 'cindy@gmail.com'
 })
 
-print(contact_book[1]['phone'])
+#print(contact_book[1]['phone'])
 
 students = [
     {'name' : 'Alice', 'mark' : 80},
@@ -58,7 +60,7 @@ students = [
     {'name' : 'John', 'mark' : 92}
     ]
 
-print(students[2]['mark'])
+#print(students[2]['mark'])
 for studentNames in students:
     print(studentNames['name'])
 
