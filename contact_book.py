@@ -15,6 +15,7 @@ def add_contact():
         'email' : email.title()}
         )
     print(f"You successfuly added {contact_book[-1]['name']}'s contact info")
+    
 #a function that takes one argument > name and searches the inputed name and prints it
 def search_name(name):
     for contact_search in contact_book:
