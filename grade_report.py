@@ -15,7 +15,7 @@ students = [
 ]
 
 for student in students:
-    student_average = student['maths'] + student['engish']+ student['science']
+    student_average = student['maths'] + student['english']+ student['science']
     if student_average >= 80 :
         learner_grade = 'A'
     elif student_average >= 70 and student_average <= 79:
@@ -33,6 +33,17 @@ for student in students:
     else:
         learner_status = 'Fail'
 
+results_list = []
+
+for student_results in students:
+    results = {
+        'name' : student_results['name'],
+        'average' : student_average,
+        'grade' : student_average,
+        'status' : learner_status
+    }
+    results_list.append(results)
+print(results_list[1])
 
 # a function that produces a class suummary report for all students
 def class_summary_report():
