@@ -11,9 +11,17 @@ students = [
     {'name':'Sihle', 'maths':72, 'english':90, 'science': 78 },
     {'name':'Mandla', 'maths':92, 'english':94, 'science': 90 },
     {'name':'George', 'maths':86, 'english':89, 'science': 78 },
-    {'name':'Amanda', 'maths':96, 'english':88, 'science': 94 }
+    {'name':'Amanda', 'maths':96, 'english':88, 'science': 94 },
+    {'name':'Thandi', 'maths':82, 'english':85, 'science': 80 },
+    {'name':'Tshepo', 'maths':60, 'english':62, 'science': 35 },
+    {'name':'Nomsa', 'maths':90, 'english':93, 'science': 88 },
+    {'name':'Bongi', 'maths':85, 'english':87, 'science': 82 },
+    {'name':'Lerato', 'maths':70, 'english':75, 'science': 72 },
+    {'name':'Sipho', 'maths':95, 'english':91, 'science': 93 },
+    {'name':'Andile', 'maths':88, 'english':90, 'science': 86 }
 ]
-
+highest_mark = 0
+lowest_mark = 100
 for student in students:
     student_average = student['maths'] + student['english']+ student['science']
     if student_average >= 80 :
@@ -32,9 +40,25 @@ for student in students:
 
     else:
         learner_status = 'Fail'
+    if student["maths"] > highest_mark:
+        highest_mark = student["maths"]
+    if student["english"] > highest_mark:
+        highest_mark = student["english"]           
+    if student["science"] > highest_mark:
+        highest_mark = student["science"]
+    if student["maths"] < lowest_mark:
+        lowest_mark = student["maths"]
+    if student["english"] < lowest_mark:
+        lowest_mark = student["english"]
+    if student["science"] < lowest_mark:
+        lowest_mark = student["science"]
+
+print(f"highest_mark = {highest_mark}")
+print(f"lowest_mark = {lowest_mark}")
 
 results_list = []
 
+# a for loop that iterates over all students and calculates each student’s average, grade and status
 for student_results in students:
     results = {
         'name' : student_results['name'],
@@ -43,11 +67,22 @@ for student_results in students:
         'status' : learner_status
     }
     results_list.append(results)
-print(results_list[1])
+
 
 # a function that produces a class suummary report for all students
-def class_summary_report():
-    return
+#def class_summary_report():
+class_total = 0
+for current_total in students:
+    current_total = current_total['maths'] + current_total['english']+ current_total['science']
+    class_total = class_total + current_total
+    class_average = class_total / 12
+
+
+
+    
+
+print(class_total)
+#return
 
 # a funtion that takes student name and prints their report card.
 def report_card(student_name):
@@ -57,29 +92,4 @@ def report_card(student_name):
 def average_iteration():
     return
 
-learner_name = input('Please enter your name: ')
-maths_marks = int(input('Enter your Maths marks: '))
-science_marks = int(input('Enter your Science marks: '))
-english_marks = int(input('Enter your English marks: '))
 
-for student_average in students['maths', 'engish', 'science']:
-    student_average = maths_marks + science_marks + english_marks // 3
-
-
-
-overall_percentage = student_average // 3
-
-print('``' * 20)
-print(f"{learner_name.title()}'s report card")
-print('``' * 20)
-
-print(f' Hello {learner_name.title()}! see your marks below\n Maths: {maths_marks}\n Science: {science_marks}\n English: {english_marks}\n Overall percentage: {overall_percentage}\n Learner status: {learner_status}')
-
-if maths_marks < 40:
-    print(f'You received below {maths_marks} in Maths, subject needs intervention')
-if science_marks < 40:
-    print(f'You received below {science_marks} in Science, subject needs intervention')
-if english_marks < 40:
-    print(f'You received below {english_marks} in English, subject needs intervention')
-
-print('``' * 20)
